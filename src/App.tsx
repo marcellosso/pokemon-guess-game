@@ -1,10 +1,7 @@
-import './App.css';
-import logo from './logo.svg';
-
 const App = (): JSX.Element => (
   <div className="App">
     <header className="App-header">
-      <img alt="logo" className="App-logo" src={logo} />
+      <img alt="logo" className="App-logo" />
       <p>
         Edit <code>src/App.tsx</code> and save to reload.
       </p>

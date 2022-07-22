@@ -1,20 +1,11 @@
+import React from 'react';
+
+import FirstGen from './views/FirstGen';
+
 const App = (): JSX.Element => (
-  <div className="App">
-    <header className="App-header">
-      <img alt="logo" className="App-logo" />
-      <p>
-        Edit <code>src/App.tsx</code> and save to reload.
-      </p>
-      <a
-        className="App-link"
-        href="https://reactjs.org"
-        rel="noopener noreferrer"
-        target="_blank"
-      >
-        Learn React
-      </a>
-    </header>
-  </div>
-);
+    <div className="App">
+      <FirstGen />
+    </div>
+  );
 
 export default App;

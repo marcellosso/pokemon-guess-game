@@ -24,8 +24,17 @@
         "allowSingleExtends": true
       }
     ],
+    "@typescript-eslint/naming-convention": [
+      "error",
+      {
+        "selector": "enum",
+        "format": ["UPPER_CASE"]
+      }
+    ],
     "@typescript-eslint/no-explicit-any": "off",
     "comma-dangle": "off",
+    "no-console": "warn",
+    "semi": [1, "always"],
     "import-helpers/order-imports": ["error", {
       "alphabetize": {
         "ignoreCase": true,
@@ -50,9 +59,9 @@
     "react/jsx-props-no-spreading": ["error", {
       "custom": "ignore"
     }],
-    "react/jsx-sort-props": ["error", {
-      "ignoreCase": true
-    }],
+    // "react/jsx-sort-props": ["error", {
+    //   "ignoreCase": true
+    // }],
     "react/prop-types": "off",
     "react/react-in-jsx-scope": "off",
     "sort-imports": ["error", {

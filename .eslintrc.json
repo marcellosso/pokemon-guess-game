@@ -35,7 +35,7 @@
     "comma-dangle": "off",
     "no-console": "warn",
     "semi": [1, "always"],
-    "import-helpers/order-imports": ["error", {
+    "import-helpers/order-imports": ["warn", {
       "alphabetize": {
         "ignoreCase": true,
         "order": "asc"
@@ -59,12 +59,11 @@
     "react/jsx-props-no-spreading": ["error", {
       "custom": "ignore"
     }],
-    // "react/jsx-sort-props": ["error", {
-    //   "ignoreCase": true
-    // }],
+    "react/require-default-props": "off",
+    "react/no-array-index-key": "off",
     "react/prop-types": "off",
     "react/react-in-jsx-scope": "off",
-    "sort-imports": ["error", {
+    "sort-imports": ["warn", {
       "ignoreCase": true,
       "ignoreDeclarationSort": true
     }]

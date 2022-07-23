@@ -1,4 +1,15 @@
-import { POKEMON_TYPE_ENUM } from '../enums';
+import { 
+  COLOR_CHECK_ENUM,
+  POKEMON_TYPE_ENUM
+} from '../enums';
+
+export interface IGuesses {
+  key: string;
+  color: string;
+}
+export interface IKandleKeyUp {
+  key: string
+}
 
 export type PokemonDataType = {
   number: number;
@@ -11,3 +22,5 @@ export type PokemonDataType = {
   defense: number;
   speed: number;
 }
+
+export type UsedKeysType = {[key: string]: COLOR_CHECK_ENUM}

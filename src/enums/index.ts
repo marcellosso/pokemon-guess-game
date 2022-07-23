@@ -19,3 +19,9 @@ export enum POKEMON_TYPE_ENUM {
   DARK = 'Dark',
   FAIRY = 'Fairy'
 }
+
+export enum COLOR_CHECK_ENUM {
+  GREEN = 'green',
+  YELLOW = 'yellow',
+  GREY = 'grey'
+}

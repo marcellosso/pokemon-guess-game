@@ -24,3 +24,12 @@ export type PokemonDataType = {
 }
 
 export type UsedKeysType = {[key: string]: COLOR_CHECK_ENUM}
+
+export type GamePropsType = {
+  turn: number;
+  currentGuess: string;
+  guesses: IGuesses[][];
+  history: string[];
+  isCorrect: boolean;
+  usedKeys: UsedKeysType;
+}

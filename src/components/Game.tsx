@@ -2,16 +2,18 @@ import React, { FC, useCallback, useEffect, useState } from 'react';
 
 import useGame from '../hooks/useGame';
 import _ from '../lodash-mixins';
-import { PokemonDataType } from '../types';
+import { GamePropsType, PokemonDataType } from '../types';
 import Grid from './board/Grid';
 import Keypad from './keyboad/Keypad';
-import Modal from './Modal';
+import Modal from './player-card.tsx/Modal';
 
 interface IGameProps {
-  pokemon: PokemonDataType 
+  pokemon: PokemonDataType,
+  numberOfLifes: number,
+  gameProps : GamePropsType
 }
 
-const Game : FC<IGameProps> = ({ pokemon }) : JSX.Element => {
+const Game : FC<IGameProps> = ({ pokemon, numberOfLifes, gameProps }) : JSX.Element => {
   const [showModal, setShowModal] = useState(false);
 
   const {
@@ -21,10 +23,14 @@ const Game : FC<IGameProps> = ({ pokemon }) : JSX.Element => {
     isCorrect,
     turn,
     usedKeys
-  } = useGame({
+  } = useGame(
+    {
     ...pokemon,
     name: _.lowerCase(pokemon.name)
-  });
+    },
+    numberOfLifes,
+    gameProps
+  );
 
   // eslint-disable-next-line global-require, @typescript-eslint/no-var-requires, import/no-dynamic-require
   const pokemonImg = require(`../config/assets/${pokemon.number}.png`);
@@ -54,14 +60,14 @@ const Game : FC<IGameProps> = ({ pokemon }) : JSX.Element => {
       window.removeEventListener('keyup', handleKeyUp);
     }
 
-    if (turn > 5) {
+    if (turn > numberOfLifes) {
       setTimeout(() => setShowModal(true), 2000);
       window.removeEventListener('keyup', handleKeyUp);
     }
 
     return () => window.removeEventListener('keyup', handleKeyUp);
 
-  }, [handleKeyUp, isCorrect, turn, winActions]);
+  }, [handleKeyUp, isCorrect, turn, winActions, numberOfLifes]);
 
   return (
     <div>
@@ -70,12 +76,12 @@ const Game : FC<IGameProps> = ({ pokemon }) : JSX.Element => {
         src={pokemonImg} 
         alt="Pokemon silhouette"
       />
-      <Grid 
+      <Grid
         currentGuess={currentGuess}
         guesses={guesses}
         turn={turn}
         isCorrect={isCorrect}
-        solutionSize={pokemon.name.length}
+        numberOfLifes={numberOfLifes}
       />
 
       <Keypad usedKeys={usedKeys} addNewKey={handleKeyUp} />

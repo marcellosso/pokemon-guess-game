@@ -1,10 +1,10 @@
 import React from 'react';
 
-import FirstGen from './views/FirstGen';
+import DefaultRouter from './DefaultRouter';
 
 const App = (): JSX.Element => (
     <div className="App">
-      <FirstGen />
+      <DefaultRouter />
     </div>
   );
 

@@ -5,6 +5,8 @@ import _ from 'lodash';
 import { IKandleKeyUp, UsedKeysType } from '../../types';
 import Key from './Key';
 
+import './styles.css';
+
 interface IKeypad {
   usedKeys: UsedKeysType,
   addNewKey: (_k: IKandleKeyUp) => void

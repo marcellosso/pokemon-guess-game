@@ -1,20 +1,30 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import _ from 'lodash';
 
 import { COLOR_CHECK_ENUM } from '../enums';
-import { IGuesses, IKandleKeyUp, PokemonDataType, UsedKeysType } from '../types';
+import { GamePropsType, IGuesses, IKandleKeyUp, PokemonDataType } from '../types';
 
-const useGame = (pokemon: PokemonDataType) => {
-  const [turn, setTurn] = useState(0);
-  const [currentGuess, setCurrentGuess] = useState('');
-  const [guesses, setGuesses] = useState<IGuesses[][]>([ ...Array(6) ]);
-  const [history, setHistory] = useState<string[]>([]);
+const useGame = (pokemon: PokemonDataType, numberOfLifes: number, gameProps : GamePropsType) => {
+  const [turn, setTurn] = useState(gameProps.turn);
+  const [currentGuess, setCurrentGuess] = useState(gameProps.currentGuess);
+  const [guesses, setGuesses] = useState<IGuesses[][]>(gameProps.guesses);
+  const [history, setHistory] = useState<string[]>(gameProps.history);
 
-  const [isCorrect, setIsCorrect] = useState(false);
+  const [isCorrect, setIsCorrect] = useState(gameProps.isCorrect);
 
   // { a: 'green', b: 'yellow', c: 'grey' }
-  const [usedKeys, setUsedKeys] = useState({} as UsedKeysType);
+  const [usedKeys, setUsedKeys] = useState(gameProps.usedKeys);
+
+  useEffect(() => {
+    console.log('uss');
+    setTurn(gameProps.turn);
+    setCurrentGuess(gameProps.currentGuess);
+    setGuesses(gameProps.guesses);
+    setHistory(gameProps.history);
+    setIsCorrect(gameProps.isCorrect);
+    setUsedKeys(gameProps.usedKeys);
+  }, [gameProps]);
 
   // format a guess into an array of letter objects
   // [{key: 'a', color: 'yellow' }]
@@ -44,15 +54,16 @@ const useGame = (pokemon: PokemonDataType) => {
   };
 
   const addNewGuess = (formattedGuess : IGuesses[]) => {
-    if (currentGuess === pokemon.name) {
-        setIsCorrect(true);
-    }
-
     setGuesses((prevGuesses) => {
         const newGuesses = [...prevGuesses];
         newGuesses[turn] = formattedGuess;
+
+        if (turn < numberOfLifes) newGuesses.push([]);
+        
         return newGuesses;
     });
+
+    if (currentGuess === pokemon.name) setIsCorrect(true);
 
     setHistory((prevHistory) => [...prevHistory, currentGuess]);
 
@@ -74,7 +85,7 @@ const useGame = (pokemon: PokemonDataType) => {
                 return;
             }
 
-            if (letter.color === COLOR_CHECK_ENUM.GREY && currentColor !== COLOR_CHECK_ENUM.GREEN && currentColor !== 'yellow') {
+            if (letter.color === COLOR_CHECK_ENUM.GREY && currentColor !== COLOR_CHECK_ENUM.GREEN && currentColor !== COLOR_CHECK_ENUM.YELLOW) {
                 newKeys[letter.key] = COLOR_CHECK_ENUM.GREY;
                 return;
             };
@@ -87,10 +98,7 @@ const useGame = (pokemon: PokemonDataType) => {
 
   const handleKeyUp = ({ key } : IKandleKeyUp) => {
     if (key === 'Enter') {
-        // Check if game not over
-        /* TODO Refactor to not allow any interactions 
-         * with text once the game is over */
-        if (turn > 5) return;
+        if (turn > numberOfLifes) return;
         if (history.includes(currentGuess)) return;
 
         const formattedGuess = formatGuess();

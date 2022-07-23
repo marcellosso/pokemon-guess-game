@@ -5,11 +5,10 @@ import { IGuesses } from '../../types';
 interface IRow {
   currentGuess?: string, 
   guess?: IGuesses[], 
-  isCorrect?: boolean,
-  solutionSize?: number
+  isCorrect?: boolean
 }
 
-const Row : FC<IRow> = ({ guess, currentGuess, isCorrect, solutionSize }) : JSX.Element=> {
+const Row : FC<IRow> = ({ guess, currentGuess, isCorrect }) : JSX.Element=> {
   if (guess) {
     return (
         <div className={`row past ${isCorrect ? 'correct' : ''}`}>
@@ -17,6 +16,9 @@ const Row : FC<IRow> = ({ guess, currentGuess, isCorrect, solutionSize }) : JSX.
                 <div key={index} className={letter.color}>
                     {letter.key}
                 </div>
+            ))}
+             {[...Array(10 - guess.length)].map((_, i) => (
+                <div key={i} className='empty' />
             ))}
         </div>
     );
@@ -30,8 +32,8 @@ if (currentGuess) {
             {letters.map((letter, index) => (
                 <div key={index} className='filled'>{letter}</div>
             ))}
-            {[...Array((solutionSize as number) - letters.length)].map((_, i) => (
-                <div key={i} />
+            {[...Array(10 - letters.length)].map((_, i) => (
+                <div key={i} className='empty' />
             ))}
         </div>
     );
@@ -39,11 +41,11 @@ if (currentGuess) {
 
 return (
     <div className='row'>
-        <div />
-        <div />
-        <div />
-        <div />
-        <div />
+        {
+         [...Array(10)].map(() => (
+            <div className='empty' />
+         ))
+        }
     </div>
 );
 };

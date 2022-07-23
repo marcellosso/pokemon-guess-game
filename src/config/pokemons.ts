@@ -1665,4 +1665,5 @@ const firstGenPokemonData : PokemonDataType[] = [
   }
 ];
 
-export default firstGenPokemonData;
+// eslint-disable-next-line import/prefer-default-export
+export { firstGenPokemonData };

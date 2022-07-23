@@ -1,3 +1,7 @@
+html {
+  background-color: #6e5c62;
+}
+
 body {
   margin: 0;
   text-align: center;
@@ -28,132 +32,11 @@ img {
   height: 150;
 }
 
-
-.row {
-  text-align: center;
-  display: flex;
-  justify-content: center;
-}
-
-.row > div {
-  display: block;
-  width: 60px;
-  height: 60px;
-  border: 1px solid #bbb;
-  margin: 4px;
-  text-align: center;
-  line-height: 60px;
-  text-transform: uppercase;
-  font-weight: bold;
-  font-size: 2.5em;
-}
-
-.row > div.green {
-  --background: #5ac85a;
-  --border-color: #5ac85a;
-  animation: 0.45s linear flip 0s forwards;
-}
-
-.row > div.grey {
-  --background: #a1a1a1;
-  --border-color: #a1a1a1;
-  animation: 0.45s linear flip 0s forwards;
-}
-
-.row > div.yellow {
-  --background: #e2cc68;
-  --border-color: #e2cc68;
-  animation: 0.45s linear flip 0s forwards;
-}
-
-
 .animateJump {
   background: var(--background);
   border-color: var(--border-color) !important;
-  color: #fff;
+  color: #eee;
   animation: 0.25s linear jumpUp 0s forwards !important;
-}
-
-.row > div:nth-child(2) {
-  animation-delay: 0.4s;
-}
-
-.row > div:nth-child(3) {
-  animation-delay: 0.8s;
-}
-
-.row > div:nth-child(4) {
-  animation-delay: 1.2s;
-}
-
-.row > div:nth-child(5) {
-  animation-delay: 1.6s;
-}
-
-.row > div:nth-child(6) {
-  animation-delay: 2.0s;
-}
-
-.row > div:nth-child(7) {
-  animation-delay: 2.4s;
-}
-
-.row > div:nth-child(8) {
-  animation-delay: 2.8s;
-}
-
-.row > div:nth-child(9) {
-  animation-delay: 3.2s;
-}
-
-.row > div:nth-child(10) {
-  animation-delay: 3.6s;
-}
-
-.row.current > div.filled {
-  animation: bounce 0.2s ease-in-out forwards;
-}
-
-.keypad {
-  max-width: 700px;
-  margin: 20px auto;
-}
-
-.keypad > div {
-  margin: 3px;
-  width: 40px;
-  height: 50px;
-  background: #eee;
-  display: inline-block;
-  border-radius: 6px;
-  line-height: 50px;
-}
-
-.keypad > div.green {
-  background: #5ac85a;
-  color: #fff;
-  transition: all 0.3s ease-in;
-}
-
-.keypad > div.yellow {
-  background: #e2cc68;
-  color: #fff;
-  transition: all 0.3s ease-in;
-}
-
-.keypad > div.grey {
-  background: #a1a1a1;
-  color: #fff;
-  transition: all 0.3s ease-in;
-}
-
-.keypad > .key {
-  cursor: pointer;
-  font-size: 0.75em;
-}
-
-.keypad > .key:active {
-  background-color: rgb(206, 205, 205);
 }
 
 .modal {
@@ -165,56 +48,36 @@ img {
   left: 0;
 }
 
-.modal div {
-  max-width: 480px;
-  background: #fff;
-  padding: 40px;
-  border-radius: 10px;
-  margin: 10% auto;
-  box-shadow: 2px 2px 10px rgba(0,0,0,0.3);
-}
-
-.modal .solution {
-  color: #ff004c;
-  font-weight: bold;
-  font-size: 0.8em;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-}
-
-/* TODO ANIMAR VITORIA E DERROTA IGUAL TERM.OOO */
-
 /* animations */
 @keyframes flip {
   0% {
     background-color: transparent;
-    /* border: 0.125em solid #4C4347; */
-    border-color: #333;
+    border-color: #615458;
     transform: perspective(200px) rotateY(0deg);
   }
 
   49.99999% {
     background-color: transparent;
-    border-color: #333;
+    border-color: #615458;
     transform: perspective(200px) rotateY(90deg);
   }
 
   50% {
     transform: perspective(200px) rotateY(-90deg);
     background-color: var(--background);
-    border-color: var(----border-color);
+    border-color: var(--border-color);
   }
 
   50.00001% {
     background-color: var(--background);
-    border-color: var(----border-color);
+    border-color: var(--border-color);
     color: #eee;
   }
 
   100% {
     transform: perspective(200px) rotateY(0deg);
     background-color: var(--background);
-    border-color: var(----border-color);
+    border-color: var(--border-color);
     color: #eee;
   }
 }
@@ -248,13 +111,13 @@ img {
 @keyframes bounce {
   0% {
     transform: scale(1);
-    border-color: #ddd;
+    border-color: #4C4347;
   }
   50% {
     transform: scale(1.2);
   }
   100% {
     transform: scale(1);
-    border-color: #333;
+    border-color: #4C4347;
   }
 }

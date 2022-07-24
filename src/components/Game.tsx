@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { FC, useCallback, useEffect, useMemo, useState } from 'react';
 
 import useGame from '../hooks/useGame';
@@ -10,11 +11,27 @@ import Modal from './player-card.tsx/Modal';
 interface IGameProps {
   pokemon: PokemonDataType,
   numberOfLifes: number,
-  gameProps : GamePropsType
+
+  gameProps : GamePropsType,
+
+  addWordAction: (_s: Record<string, any>) => void,
+  finishGameAction: (_c: boolean, _t: number) => void,
+
+  handleNewGame: () => void
 }
 
-const Game : FC<IGameProps> = ({ pokemon, numberOfLifes, gameProps }) : JSX.Element => {
+const Game : FC<IGameProps> = ({ 
+  pokemon, 
+  numberOfLifes, 
+  gameProps, 
+
+  addWordAction, 
+  finishGameAction,
+
+  handleNewGame
+}) : JSX.Element => {
   const [showModal, setShowModal] = useState(false);
+  const [gameEnded, setGameEnded] = useState(false);
 
   const {
     currentGuess,
@@ -29,7 +46,9 @@ const Game : FC<IGameProps> = ({ pokemon, numberOfLifes, gameProps }) : JSX.Elem
     name: _.lowerCase(pokemon.name)
     },
     numberOfLifes,
-    gameProps
+    gameProps,
+    addWordAction,
+    handleNewGame
   );
 
   // eslint-disable-next-line global-require, @typescript-eslint/no-var-requires, import/no-dynamic-require
@@ -61,26 +80,31 @@ const Game : FC<IGameProps> = ({ pokemon, numberOfLifes, gameProps }) : JSX.Elem
   }, [calculatedAnimationDelay, isCorrect]);
 
   const endGameActions = useCallback(async () => {
+    finishGameAction(isCorrect, turn);
     await triggerAnimations();
     setShowModal(true);
-}, [triggerAnimations]);
+}, [isCorrect, turn]);
 
   useEffect(() => {
     window.addEventListener('keyup', handleKeyUp);
 
     if (isCorrect) {
-      endGameActions();
+      setGameEnded(true);
       window.removeEventListener('keyup', handleKeyUp);
     }
 
     if (turn > numberOfLifes) {
-      endGameActions();
+      setGameEnded(true);
       window.removeEventListener('keyup', handleKeyUp);
     }
 
     return () => window.removeEventListener('keyup', handleKeyUp);
 
-  }, [handleKeyUp, isCorrect, turn, endGameActions, numberOfLifes]);
+  }, [handleKeyUp, isCorrect, turn]);
+
+  useEffect(() => {
+    if (gameEnded && !gameProps.isCorrect) endGameActions();
+  },[gameEnded]);
 
   return (
     <div>

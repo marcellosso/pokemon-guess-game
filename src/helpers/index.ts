@@ -5,5 +5,13 @@ const getPokemonIndexByDay = (gameStartDate: Date, pokemonData: PokemonDataType[
   return Math.floor(Math.abs(timeDiff / (1000 * 3600 * 24))) % pokemonData.length;
 };
 
-// eslint-disable-next-line import/prefer-default-export
+const getDayDifference = (date: Date) : number => {
+  const today = new Date();
+  const difference = today.getTime() - date.getTime();
+  const daysDifference = Math.ceil(difference / (1000 * 3600 * 24));
+
+  return daysDifference;
+};
+
 export { getPokemonIndexByDay };
+export { getDayDifference };

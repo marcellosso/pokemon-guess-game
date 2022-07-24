@@ -20,7 +20,7 @@ const Grid : FC<IGrid> = ({ currentGuess, guesses, turn, isCorrect, numberOfLife
                     return <Row key={index} currentGuess={currentGuess} />;
                 }
                 if (
-                    (isCorrect && (turn === numberOfLifes || !guesses[index + 1]) ) ||
+                    (isCorrect && (turn === numberOfLifes || (guesses[index + 1]) && guesses[index + 1].length === 0) ) ||
                     index === numberOfLifes
                 ) {
                     return <Row key={index} guess={guess} isCorrect={isCorrect} />;

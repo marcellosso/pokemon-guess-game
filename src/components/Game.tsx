@@ -1,4 +1,4 @@
-import React, { FC, useCallback, useEffect, useState } from 'react';
+import React, { FC, useCallback, useEffect, useMemo, useState } from 'react';
 
 import useGame from '../hooks/useGame';
 import _ from '../lodash-mixins';
@@ -33,41 +33,54 @@ const Game : FC<IGameProps> = ({ pokemon, numberOfLifes, gameProps }) : JSX.Elem
   );
 
   // eslint-disable-next-line global-require, @typescript-eslint/no-var-requires, import/no-dynamic-require
-  const pokemonImg = require(`../config/assets/${pokemon.number}.png`);
+  const pokemonImg = require(`../config/assets-sill/${pokemon.number}.png`);
 
-  const winActions = useCallback(async () => {
-    const calculatedDelay = (pokemon.name.length * 38) * 10;
-    await _.sleep(calculatedDelay);
+  const calculatedAnimationDelay = useMemo(() => (pokemon.name.length * 38) * 10, [pokemon.name]);
 
-    const correctElem = document.querySelectorAll(".correct > .green");
+  const triggerAnimations = useCallback(async () => {
+    await _.sleep(calculatedAnimationDelay);
 
-    // eslint-disable-next-line no-restricted-syntax
-    for (const elem of Array.from(correctElem)) {
-        elem.classList.add('animateJump');
-        // eslint-disable-next-line no-await-in-loop
-        await _.sleep(100);
+    let animationClass = '';
+    let animationElem = document.querySelectorAll('.incorrect > .grey, .incorrect > .yellow, .incorrect > .green');
+
+    if (isCorrect) {
+      animationElem = document.querySelectorAll(".correct > .green");
+      animationClass = 'animateJump';
+    } else {
+      animationClass = 'animateBounce';
     }
 
-    await _.sleep(200);
+    // eslint-disable-next-line no-restricted-syntax
+    for (const elem of Array.from(animationElem)) {
+      elem.classList.add(animationClass);
+      // eslint-disable-next-line no-await-in-loop
+      await _.sleep(100);
+    } 
+  
+    await _.sleep(350);
+  }, [calculatedAnimationDelay, isCorrect]);
+
+  const endGameActions = useCallback(async () => {
+    await triggerAnimations();
     setShowModal(true);
-}, [pokemon.name]);
+}, [triggerAnimations]);
 
   useEffect(() => {
     window.addEventListener('keyup', handleKeyUp);
 
     if (isCorrect) {
-      winActions();
+      endGameActions();
       window.removeEventListener('keyup', handleKeyUp);
     }
 
     if (turn > numberOfLifes) {
-      setTimeout(() => setShowModal(true), 2000);
+      endGameActions();
       window.removeEventListener('keyup', handleKeyUp);
     }
 
     return () => window.removeEventListener('keyup', handleKeyUp);
 
-  }, [handleKeyUp, isCorrect, turn, winActions, numberOfLifes]);
+  }, [handleKeyUp, isCorrect, turn, endGameActions, numberOfLifes]);
 
   return (
     <div>

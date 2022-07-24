@@ -17,7 +17,6 @@ const useGame = (pokemon: PokemonDataType, numberOfLifes: number, gameProps : Ga
   const [usedKeys, setUsedKeys] = useState(gameProps.usedKeys);
 
   useEffect(() => {
-    console.log('uss');
     setTurn(gameProps.turn);
     setCurrentGuess(gameProps.currentGuess);
     setGuesses(gameProps.guesses);

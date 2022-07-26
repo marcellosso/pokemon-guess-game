@@ -5,7 +5,7 @@ import { COLOR_CHECK_ENUM } from '../../enums';
 import { getDayDifference, getPokemonIndexByDay } from '../../helpers';
 import useLocalStorage from '../../hooks/useLocalStorage';
 import _ from '../../lodash-mixins';
-import { GamePropsType, IConfigPokeMeta, IConfigPokeStats, IGuesses, PokemonDataType, UsedKeysType } from '../../types';
+import { GamePropsType, IConfigPokeMeta, IConfigPokeState, IConfigPokeStats, IGuesses, PokemonDataType, UsedKeysType } from '../../types';
 
 interface IProvider {
   children: JSX.Element
@@ -14,9 +14,15 @@ interface IProvider {
 type FirstGenEasyContexTypes = {
   numberOfLifes: number,
   pokemon: PokemonDataType,
+
   gameProps: GamePropsType,
-  addWordLSManagement: (_s: Record<string, any>) => void
+  
+  pokeStatsLS: IConfigPokeStats,
+  capturedPokeStatsLS: PokemonDataType[],
+
+  addWordLSManagement: (_s: IConfigPokeState) => void
   finishGameLSManagement: (_c: boolean, _t: number) => void,
+
   handleNewGame: () => void
 }
 
@@ -28,9 +34,10 @@ const Provider : FC<IProvider> = ({ children }) : ReactElement => {
   const pokemonData = useMemo(() => config.firstGenPokemon, []);
   const gameStartDate = useMemo(() => config.START_DATE, []);
 
-  const [pokeMetaLS, setPokeMetaLS] = useLocalStorage('pokeFirstEasyMeta', config.defaultPokeMetaLS);
-  const [pokeStateLS, setPokeStateLS] = useLocalStorage('pokeFirstEasyState', config.defaultPokeStateLS);
-  const [pokeStatsLS, setPokeStatsLS] = useLocalStorage('pokeFirstEasyStats', config.defaultPokeStatsLS(numberOfLifes + 1));
+  const [pokeMetaLS, setPokeMetaLS] = useLocalStorage<IConfigPokeMeta>('pokeFirstEasyMeta', config.defaultPokeMetaLS);
+  const [pokeStateLS, setPokeStateLS] = useLocalStorage<IConfigPokeState>('pokeFirstEasyState', config.defaultPokeStateLS);
+  const [capturedPokeStatsLS, setCapturedPokeStatsLS] = useLocalStorage<PokemonDataType[]>('pokeFirstEasyCapturedStats', config.defaultCapturedPokeStatsLs);
+  const [pokeStatsLS, setPokeStatsLS] = useLocalStorage<IConfigPokeStats>('pokeFirstEasyStats', config.defaultPokeStatsLS(numberOfLifes + 1));
 
   const [gameProps, setGameProps] = useState<GamePropsType>(config.defaultGameAttributes);
 
@@ -45,12 +52,20 @@ const Provider : FC<IProvider> = ({ children }) : ReactElement => {
     return usedKeys;
   };
 
-  const addWordLSManagement = (pokeState: Record<string, any>) => {
+  const addWordLSManagement = (pokeState: IConfigPokeState) => {
     setPokeStateLS(pokeState);
   };
 
   const finishGameLSManagement = (isCorrect: boolean, catchTurn: number) => {
     const endTime = new Date().getTime();
+
+    setCapturedPokeStatsLS((prevCapturedPokes: PokemonDataType[]) => {
+      const newCapturedPokes = [ ...prevCapturedPokes ];
+
+      newCapturedPokes.push(pokemon);
+
+      return _.orderBy(newCapturedPokes, 'number');
+    });
 
     setPokeMetaLS((prevMeta : IConfigPokeMeta) => {
       const newMeta = { ...prevMeta };
@@ -61,7 +76,7 @@ const Provider : FC<IProvider> = ({ children }) : ReactElement => {
       return newMeta;
     });
 
-    setPokeStatsLS((prevStats : IConfigPokeStats) => {
+    setPokeStatsLS((prevStats: IConfigPokeStats) => {
       const newStats = { ...prevStats };
 
       newStats.gamesPlayed = prevStats.gamesPlayed + 1;
@@ -164,6 +179,9 @@ const Provider : FC<IProvider> = ({ children }) : ReactElement => {
         pokemon,
 
         gameProps,
+
+        pokeStatsLS,
+        capturedPokeStatsLS,
 
         addWordLSManagement,
         finishGameLSManagement,

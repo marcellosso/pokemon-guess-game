@@ -41,15 +41,6 @@ img {
   animation: 0.25s linear shake 0s forwards !important;
 }
 
-.modal {
-  background: rgba(255,255,255,0.7);
-  position: fixed;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-}
-
 /* animations */
 @keyframes flip {
   0% {

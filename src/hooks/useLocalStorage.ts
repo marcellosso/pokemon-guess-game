@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react';
 
-const useLocalStorage = (key : string, defaultValue: Record<string, any> = {}) => {
+const useLocalStorage = <TValue>(key : string, defaultValue: TValue = {} as TValue) : [TValue, React.Dispatch<React.SetStateAction<TValue>>] => {
   const [value, setValue] = useState(() => {
       try {
           const saved = localStorage.getItem(key) as string;
           if (saved !== null) {
-              return JSON.parse(saved);
+              return JSON.parse(saved) as TValue;
           }
           return defaultValue;
       } catch {

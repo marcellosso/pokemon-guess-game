@@ -31,6 +31,7 @@ export interface IConfigPokeStats {
   timeStats: TimeStatsType,
   catchGraph: number[]
 }
+
 export interface IConfigPokeMeta { 
   startTime: number,
   endTime: number,
@@ -39,7 +40,6 @@ export interface IConfigPokeMeta {
 }
 
 export interface IConfigPokeState { 
-  pokemonStats: PokemonDataType
   formattedGuesses: IGuesses[][],
   history: string[],
   turn: number

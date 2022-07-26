@@ -3,7 +3,7 @@ import React, { FC, useCallback, useEffect, useMemo, useState } from 'react';
 
 import useGame from '../hooks/useGame';
 import _ from '../lodash-mixins';
-import { GamePropsType, PokemonDataType } from '../types';
+import { GamePropsType, IConfigPokeState, PokemonDataType } from '../types';
 import Grid from './board/Grid';
 import Keypad from './keyboad/Keypad';
 import Modal from './player-card.tsx/Modal';
@@ -14,7 +14,7 @@ interface IGameProps {
 
   gameProps : GamePropsType,
 
-  addWordAction: (_s: Record<string, any>) => void,
+  addWordAction: (_s: IConfigPokeState) => void,
   finishGameAction: (_c: boolean, _t: number) => void,
 
   handleNewGame: () => void
@@ -102,8 +102,15 @@ const Game : FC<IGameProps> = ({
 
   }, [handleKeyUp, isCorrect, turn]);
 
+  // TODO Remove this and add proper delayed animation on modal
+  const callModal = async () => {
+    await _.sleep(1000);
+    setShowModal(true);
+  };
+
   useEffect(() => {
     if (gameEnded && !gameProps.isCorrect) endGameActions();
+    else if (gameEnded && gameProps.isCorrect) callModal();
   },[gameEnded]);
 
   return (
@@ -127,7 +134,7 @@ const Game : FC<IGameProps> = ({
         <Modal
           isCorrect={isCorrect}
           turn={turn}
-          solution={pokemon.name}
+          pokemon={pokemon}
         />
       ) }
     </div>

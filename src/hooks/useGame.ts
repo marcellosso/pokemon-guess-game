@@ -11,7 +11,7 @@ const useGame = (
   pokemon: PokemonDataType, 
   numberOfLifes: number, 
   gameProps : GamePropsType, 
-  addWordAction: (_s: Record<string, any>) => void,
+  addWordAction: (_s: IConfigPokeState) => void,
   handleNewGame: () => void,
   ) => {
   const [turn, setTurn] = useState(gameProps.turn);
@@ -63,19 +63,19 @@ const useGame = (
   const getGameStateInfo = ({ localGuesses, localHistory, localTurn }: { localGuesses: IGuesses[][], localHistory: string[], localTurn: number }) : IConfigPokeState => {
     const gameState = { ...defaultPokeStateLS };
 
-    gameState.pokemonStats = {
-      name: pokemon.name,
-      number: pokemon.number,
-      type: pokemon.type,
+    // gameState.pokemonStats = {
+    //   name: pokemon.name,
+    //   number: pokemon.number,
+    //   type: pokemon.type,
 
-      attack: pokemon.attack,
-      defense: pokemon.defense,
-      speed: pokemon.speed,
+    //   attack: pokemon.attack,
+    //   defense: pokemon.defense,
+    //   speed: pokemon.speed,
 
-      height: pokemon.height,
-      weight: pokemon.weight,
-      hp: pokemon.hp,
-    };
+    //   height: pokemon.height,
+    //   weight: pokemon.weight,
+    //   hp: pokemon.hp,
+    // };
 
     gameState.formattedGuesses = localGuesses;
     gameState.history = localHistory;

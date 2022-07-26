@@ -1,6 +1,6 @@
 import { POKEMON_TYPE_ENUM } from '../enums';
 import _ from '../lodash-mixins';
-import { IConfigPokeMeta, IConfigPokeState, IConfigPokeStats, IGuesses } from '../types';
+import { IConfigPokeMeta, IConfigPokeState, IConfigPokeStats, IGuesses, PokemonDataType } from '../types';
 import allGenPokemon from './allGenPokemon';
 import firstGenPokemon from './firstGenPokemons';
 
@@ -17,21 +17,12 @@ const defaultPokeMetaLS = {
 } as IConfigPokeMeta;
 
 const defaultPokeStateLS = {
-  pokemonStats: {
-    name: '',
-    number: 0,
-    type: '' as POKEMON_TYPE_ENUM,
-    height: 0,
-    weight: 0,
-    hp: 0,
-    attack: 0,
-    defense: 0,
-    speed: 0
-  },
   formattedGuesses: [[]] as unknown as IGuesses[][],
   history: [],
   turn: 0
 } as IConfigPokeState;
+
+const defaultCapturedPokeStatsLs = [] as PokemonDataType[];
 
 const defaultPokeStatsLS = (numberOfLifes: number) : IConfigPokeStats => {
   const defaultCatchGraph = new Array(numberOfLifes).fill(0);
@@ -69,6 +60,7 @@ export { POSSIBLE_POKEMONS };
 
 export { defaultPokeMetaLS };
 export { defaultPokeStateLS };
+export { defaultCapturedPokeStatsLs };
 export { defaultPokeStatsLS };
 
 export { defaultGameAttributes };

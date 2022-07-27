@@ -17,7 +17,8 @@ export enum POKEMON_TYPE_ENUM {
   STEEL = 'Steel', 
   DRAGON = 'Dragon', 
   DARK = 'Dark',
-  FAIRY = 'Fairy'
+  FAIRY = 'Fairy',
+  UNDEFINED = '?'
 }
 
 export enum COLOR_CHECK_ENUM {

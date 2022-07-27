@@ -10,25 +10,6 @@ interface IPlayerCard {
   playerStats: IConfigPokeStats
 }
 
-// {
-//   "gamesPlayed": 2,
-//   "gamesWon": 2,
-//   "winStreak": 2,
-//   "lastGameWon": 38,
-//   "timeStats": {
-//       "avgTime": 5,
-//       "minTime": 0,
-//       "maxTime": 10
-//   },
-//   "catchGraph": [
-//       2,
-//       0,
-//       0,
-//       0,
-//       0
-//   ]
-// }
-
 const PlayerCard = ({ setOpenPlayerCard, playerStats } : IPlayerCard) => (
     <div className='playerCard'>
           <div>

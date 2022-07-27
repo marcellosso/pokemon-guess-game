@@ -32,7 +32,6 @@ const Provider : FC<IProvider> = ({ children }) : ReactElement => {
   const numberOfLifes = 4; // TURNS ARE LIFE ´+ 1
 
   const pokemonData = useMemo(() => config.firstGenPokemon, []);
-  const gameStartDate = useMemo(() => config.START_DATE, []);
 
   const [pokeMetaLS, setPokeMetaLS] = useLocalStorage<IConfigPokeMeta>('pokeFirstEasyMeta', config.defaultPokeMetaLS);
   const [pokeStateLS, setPokeStateLS] = useLocalStorage<IConfigPokeState>('pokeFirstEasyState', config.defaultPokeStateLS);
@@ -41,7 +40,7 @@ const Provider : FC<IProvider> = ({ children }) : ReactElement => {
 
   const [gameProps, setGameProps] = useState<GamePropsType>(config.defaultGameAttributes);
 
-  const pokemon = useMemo(() => pokemonData[getPokemonIndexByDay(gameStartDate, pokemonData)], [gameStartDate, pokemonData]);
+  const pokemon = useMemo(() => pokemonData[getPokemonIndexByDay(pokemonData)], [pokemonData]);
 
   const mapGuessesToUsedKey = (guesses: IGuesses[][]) => {
     const flattenedGuesses = _.flattenDeep(guesses);
@@ -82,7 +81,7 @@ const Provider : FC<IProvider> = ({ children }) : ReactElement => {
       newStats.gamesPlayed = prevStats.gamesPlayed + 1;
       newStats.gamesWon = isCorrect ? prevStats.gamesWon + 1 : prevStats.gamesWon;
       newStats.winStreak = isCorrect ? prevStats.winStreak + 1 : 0;
-      newStats.lastGameWon = isCorrect ? getDayDifference(new Date(gameStartDate)) : prevStats.lastGameWon;
+      newStats.lastGameWon = isCorrect ? getDayDifference(new Date(config.GAME_START_DATE)) : prevStats.lastGameWon;
       
       const catchGraph = [ ...prevStats.catchGraph ];
       catchGraph[catchTurn] += 1;
@@ -108,7 +107,7 @@ const Provider : FC<IProvider> = ({ children }) : ReactElement => {
       newMeta.startTime = new Date().getTime();
       newMeta.endTime = 0;
       newMeta.win = false;
-      newMeta.day = getDayDifference(new Date(gameStartDate));
+      newMeta.day = getDayDifference(new Date(config.GAME_START_DATE));
 
       return newMeta;
     });

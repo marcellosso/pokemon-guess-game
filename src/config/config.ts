@@ -1,10 +1,9 @@
-import { POKEMON_TYPE_ENUM } from '../enums';
 import _ from '../lodash-mixins';
 import { IConfigPokeMeta, IConfigPokeState, IConfigPokeStats, IGuesses, PokemonDataType } from '../types';
 import allGenPokemon from './allGenPokemon';
 import firstGenPokemon from './firstGenPokemons';
 
-const START_DATE = new Date('19 Jun 2022');
+const GAME_START_DATE = new Date('19 Jun 2022');
 const POSSIBLE_POKEMONS = allGenPokemon.map((pokemon) => _.lowerCase(pokemon.name));
 
 // DEFAULT LOCAL STORAGE VALUES
@@ -52,7 +51,7 @@ const defaultGameAttributes = {
   usedKeys: {}
 };
 
-export { START_DATE };
+export { GAME_START_DATE };
 
 export { firstGenPokemon };
 export { allGenPokemon };

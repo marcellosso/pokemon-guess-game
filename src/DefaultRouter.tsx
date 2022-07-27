@@ -9,8 +9,8 @@ const DefaultRouter = () => (
     <BrowserRouter>
       <Navbar />
       <Routes>
-        <Route path="/first-gen-hard" element={<FirstGenHard />}/>
         <Route path="/" element={<FirstGenEasy />}/>
+        <Route path="/hard" element={<FirstGenHard />}/>
         
         <Route path="*" element={<h1>404</h1>} />
       </Routes>

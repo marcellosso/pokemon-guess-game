@@ -5,8 +5,8 @@ import useGame from '../hooks/useGame';
 import _ from '../lodash-mixins';
 import { GamePropsType, IConfigPokeState, PokemonDataType } from '../types';
 import Grid from './board/Grid';
+import Modal from './endgame/Modal';
 import Keypad from './keyboad/Keypad';
-import Modal from './player-card.tsx/Modal';
 
 interface IGameProps {
   pokemon: PokemonDataType,

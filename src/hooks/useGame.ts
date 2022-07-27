@@ -63,20 +63,6 @@ const useGame = (
   const getGameStateInfo = ({ localGuesses, localHistory, localTurn }: { localGuesses: IGuesses[][], localHistory: string[], localTurn: number }) : IConfigPokeState => {
     const gameState = { ...defaultPokeStateLS };
 
-    // gameState.pokemonStats = {
-    //   name: pokemon.name,
-    //   number: pokemon.number,
-    //   type: pokemon.type,
-
-    //   attack: pokemon.attack,
-    //   defense: pokemon.defense,
-    //   speed: pokemon.speed,
-
-    //   height: pokemon.height,
-    //   weight: pokemon.weight,
-    //   hp: pokemon.hp,
-    // };
-
     gameState.formattedGuesses = localGuesses;
     gameState.history = localHistory;
     gameState.turn = localTurn;

@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 
 import Game from '../../components/Game';
+import PlayerCard from '../../components/player-card';
 import { FirstGenEasyContext } from './FirstGenEasyContext';
 
 const FirstGenEasy = () => {
@@ -9,6 +10,7 @@ const FirstGenEasy = () => {
     numberOfLifes, 
     
     gameProps, 
+    pokeStatsLS,
 
     addWordLSManagement, 
     finishGameLSManagement, 
@@ -16,6 +18,9 @@ const FirstGenEasy = () => {
     handleNewGame 
   } = useContext(FirstGenEasyContext);
 
+  const [ openPlayerCard, setOpenPlayerCard ] = React.useState(false);
+  console.log(openPlayerCard);
+  console.log(pokeStatsLS);
   return (
     <>
       <div>First Gen</div>
@@ -27,6 +32,17 @@ const FirstGenEasy = () => {
         handleNewGame={handleNewGame}
         finishGameAction={finishGameLSManagement}
       />
+      {
+        openPlayerCard && (
+          <PlayerCard 
+            setOpenPlayerCard={setOpenPlayerCard} 
+            playerStats={pokeStatsLS} 
+          />
+        )
+      }
+      <button type='button' onClick={() => setOpenPlayerCard(true)} >
+        Player Card
+      </button>
     </>
   );
 };

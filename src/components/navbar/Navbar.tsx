@@ -11,10 +11,13 @@ const Navbar = () => (
             <Link to="/">1° Gen (Easy)</Link>
           </li>
           <li>
-            <Link to="/first-gen-hard">1° Gen (Hard)</Link>
+            <Link to="/hard">1° Gen (Hard)</Link>
           </li>
           <li>
-            <Link to="/all-gen">All Gens</Link>
+            <Link style={{ pointerEvents: 'none', color: '#b9b6b6' }} to="/all">All Gens</Link>
+          </li>
+          <li>
+            <Link style={{ pointerEvents: 'none', color: '#b9b6b6' }} to="/battle">Battle</Link>
           </li>
         </ul>
       {/* </div> */}

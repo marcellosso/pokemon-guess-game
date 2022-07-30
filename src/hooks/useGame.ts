@@ -136,7 +136,7 @@ const useGame = (
       if (currentGuess.length === 0) return;
       if (turn > numberOfLifes) return;
       if (history.includes(currentGuess)) return;
-      if (!POSSIBLE_POKEMONS.includes(currentGuess)) return;
+      // if (!POSSIBLE_POKEMONS.includes(currentGuess)) return;
       
       if (turn === 0) handleNewGame();
 

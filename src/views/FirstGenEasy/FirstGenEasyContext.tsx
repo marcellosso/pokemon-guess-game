@@ -17,6 +17,7 @@ type FirstGenEasyContexTypes = {
 
   gameProps: GamePropsType,
   
+  pokeMetaLS: IConfigPokeMeta,
   pokeStatsLS: IConfigPokeStats,
   capturedPokeStatsLS: PokemonDataType[],
 
@@ -151,26 +152,6 @@ const Provider : FC<IProvider> = ({ children }) : ReactElement => {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  // TODO Gerar mensagem para copiar
-  // const generateScoreCard = async () => {
-  //   let result = `Corporate Wordle ${getTheWordIndexForToday() + 1} / ${wordList.length}\n\n`;
-  //   scoreCard.forEach((line) => {
-  //     const lineOutput = [...line].reduce((prev, curr) => {
-  //       switch (curr) {
-  //         case 'green':
-  //           return prev + '🟩';
-  //         case 'yellow':
-  //           return prev + '🟨';
-  //         default:
-  //           return prev + '⬛';
-  //       }
-  //     }, '');
-  //     result += `${lineOutput}\n`;
-  //   });
-  //   await navigator.clipboard.writeText(result);
-  //   showMessage("Result is copied to clipboard")
-  // }
-
   return (
     <FirstGenEasyContext.Provider
       value={{
@@ -179,6 +160,7 @@ const Provider : FC<IProvider> = ({ children }) : ReactElement => {
 
         gameProps,
 
+        pokeMetaLS,
         pokeStatsLS,
         capturedPokeStatsLS,
 

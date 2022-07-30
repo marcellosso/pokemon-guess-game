@@ -1,4 +1,4 @@
-.pokedex {
+.tutorial {
   background: rgba(255,255,255,0.7);
   position: fixed;
   width: 100%;
@@ -7,29 +7,31 @@
   left: 0;
 }
 
-.pokedex .mainContainer {
-  max-width: 480px;
-  max-height: 600px;
-  overflow-y: auto;
-  overflow-x: hidden;
+.tutorial .mainContainer .pokemonImg {
+  width: 75px;
+  height: 75px;
+}
+
+.tutorial .mainContainer {
+  max-width: 560px;
   background: #fff;
   padding: 40px;
-  padding-top: 0;
   border-radius: 10px;
   margin: 10% auto;
   box-shadow: 2px 2px 10px rgba(0,0,0,0.3);
-
-  /* Hide scrollbar for IE, Edge and Firefox */
-  -ms-overflow-style: none;  /* IE and Edge */
-  scrollbar-width: none;  /* Firefox */
 }
 
-/* Hide scrollbar for Chrome */
-.pokedex .mainContainer::-webkit-scrollbar {
-  display: none;
+.tutorial .mainContainer .tutorialParagraph {
+  text-align: justify;
 }
 
-.pokedex .pokemonRow {
+.tutorial .mainContainer .pokedexParagraph {
+  margin-top: 1.7rem;
+}
+
+/* Temporariamente usando os styles da pokedex */
+
+.tutorial .pokemonRow {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -38,25 +40,25 @@
   /* box-shadow: 0px 8px 18px -5px rgba(0,0,0,0.75); */
 }
 
-.pokedex .pokemonRow:nth-child(n + 1) {
+.tutorial .pokemonRow:nth-child(n + 1) {
   margin-top: 1em;
 }
 
-.pokedex .pokemonRow .pokeIcon {
+.tutorial .pokemonRow .pokeIcon {
   border: 1px solid black;
   padding: 10px 10px 5px 10px;
 }
 
-.pokedex .pokemonRow .pokeIcon img {
+.tutorial .pokemonRow .pokeIcon img {
   width: 60px;
   height: 60px;
 }
 
-.pokedex .pokemonRow .pokeIcon p {
+.tutorial .pokemonRow .pokeIcon p {
   font-weight: bold;
 }
 
-.pokedex .pokemonRow .infoContainer {
+.tutorial .pokemonRow .infoContainer {
   width: 80%;
   height: 130px;
   display: flex;
@@ -66,26 +68,17 @@
   margin-left: 1.2em;
 }
 
-.pokedex .pokemonRow .infoContainer h3 {
+.tutorial .pokemonRow .infoContainer h3 {
   align-self: center;
   margin: 0;
   margin-bottom: 0.2rem;
 }
 
-.pokedex .pokemonRow .mainInfo {
-}
-
-.pokedex .pokemonRow .sizeInfo {
-}
-
-.pokedex .pokemonRow .battleInfo {
-}
-
-.pokedex .pokemonRow .battleInfo h4:nth-child(1) {
+.tutorial .pokemonRow .battleInfo h4:nth-child(1) {
   margin-right: 0;
 }
 
-.pokedex .pokemonRow .battleInfo h4:nth-child(2) {
+.tutorial .pokemonRow .battleInfo h4:nth-child(2) {
   margin-left: 2rem;
   margin-right: 2rem;
 }

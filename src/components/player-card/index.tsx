@@ -1,6 +1,6 @@
-/* eslint-disable jsx-a11y/control-has-associated-label */
 import React from 'react';
 
+import useCancelModal from '../../hooks/useCancelModal';
 import { IConfigPokeStats } from '../../types';
 
 import './styles.css';
@@ -10,14 +10,21 @@ interface IPlayerCard {
   playerStats: IConfigPokeStats
 }
 
-const PlayerCard = ({ setOpenPlayerCard, playerStats } : IPlayerCard) => (
-    <div className='playerCard'>
-          <div>
-            <button 
-              className="close" 
-              type='button'
-              onClick={() => setOpenPlayerCard(false)}
-            />
+const PlayerCard = ({ setOpenPlayerCard, playerStats } : IPlayerCard) => {
+  const onEscapePressed = useCancelModal(setOpenPlayerCard);
+
+  return (
+    <div 
+      className='playerCard'
+      onClick={(e) => {
+        e.stopPropagation(); 
+        setOpenPlayerCard(false);
+      }}
+      onKeyDown={onEscapePressed}
+      role='button'
+      tabIndex={0}
+    >
+          <div className='mainContainer'>
             <h1>Player Card</h1>
           
             <h4>General</h4>
@@ -40,6 +47,6 @@ const PlayerCard = ({ setOpenPlayerCard, playerStats } : IPlayerCard) => (
 
           </div>
     </div>
-  );
+  );};
       
 export default PlayerCard;

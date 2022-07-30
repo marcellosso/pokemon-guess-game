@@ -1,8 +1,8 @@
-/* eslint-disable jsx-a11y/control-has-associated-label */
 import React, { useMemo } from 'react';
 
 import { firstGenPokemon } from '../../config/config';
 import { POKEMON_TYPE_ENUM } from '../../enums';
+import useCancelModal from '../../hooks/useCancelModal';
 import _ from '../../lodash-mixins';
 import { PokemonDataType } from '../../types';
 import PokemonDataRow from './Row';
@@ -15,6 +15,7 @@ interface IPokedex {
 }
 
 const Pokedex = ({ setOpenPokedex, capturedPokemons } : IPokedex) => { 
+  const onEscapePressed = useCancelModal(setOpenPokedex);
 
   const allPokemonData = useMemo(() => {
     const allPokemon = [] as (PokemonDataType & { iconPath: string })[];
@@ -46,13 +47,17 @@ const Pokedex = ({ setOpenPokedex, capturedPokemons } : IPokedex) => {
   }, [capturedPokemons]);
 
   return (
-    <div className='pokedex'>
+    <div 
+      className='pokedex' 
+      onClick={(e) => {
+        e.stopPropagation(); 
+        setOpenPokedex(false);
+      }}
+      onKeyDown={onEscapePressed}
+      role='button'
+      tabIndex={0}
+    >
           <div className='mainContainer'>
-            <button 
-              className="close" 
-              type='button'
-              onClick={() => setOpenPokedex(false)}
-            />
             <h1>Pokedex</h1>
 
             {

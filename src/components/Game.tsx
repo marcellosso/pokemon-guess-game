@@ -1,5 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { FC, useCallback, useEffect, useMemo, useState } from 'react';
+import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
 
 import useGame from '../hooks/useGame';
 import _ from '../lodash-mixins';
@@ -11,6 +12,9 @@ import Keypad from './keyboad/Keypad';
 interface IGameProps {
   pokemon: PokemonDataType,
   numberOfLifes: number,
+
+  gameDay: number,
+  winStreak: number,
 
   gameProps : GamePropsType,
 
@@ -24,6 +28,9 @@ const Game : FC<IGameProps> = ({
   pokemon, 
   numberOfLifes, 
   gameProps, 
+
+  gameDay,
+  winStreak,
 
   addWordAction, 
   finishGameAction,
@@ -114,12 +121,47 @@ const Game : FC<IGameProps> = ({
   },[gameEnded]);
 
   return (
-    <div>
+    // eslint-disable-next-line jsx-a11y/click-events-have-key-events
+    <div
+      onClick={(e) => {
+        e.stopPropagation(); 
+        setShowModal(true);
+      }}
+      role='button'
+      tabIndex={0}
+    >
       <div>Solution - {pokemon.name}</div>
       <img 
         src={pokemonImg} 
         alt="Pokemon silhouette"
       />
+      
+      <div style={{
+        display: 'flex',
+        justifyContent: 'center',
+      }}>
+      { 
+        [...Array((numberOfLifes + 1 - turn))].map(() => (
+            <AiFillHeart 
+              color="#c0404b" 
+              style={{
+                filter:"drop-shadow(1px 1px 3px #000)"
+              }}
+            />
+          ))
+      }
+      { 
+        [...Array((turn))].map(() => (
+            <AiOutlineHeart 
+              color="#c0404b" 
+              style={{
+                filter:"drop-shadow(1px 1px 3px #000)"
+              }}
+            />
+          ))
+      }
+      </div>
+
       <Grid
         currentGuess={currentGuess}
         guesses={guesses}
@@ -134,7 +176,11 @@ const Game : FC<IGameProps> = ({
         <Modal
           isCorrect={isCorrect}
           turn={turn}
+          currentDay={gameDay}
+          currentWinstreak={winStreak}
+          guesses={guesses}
           pokemon={pokemon}
+          setOpenModal={setShowModal}
         />
       ) }
     </div>

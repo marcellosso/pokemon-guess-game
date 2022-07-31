@@ -125,7 +125,7 @@ const Game : FC<IGameProps> = ({
     <div
       onClick={(e) => {
         e.stopPropagation(); 
-        setShowModal(true);
+        if (gameEnded) setShowModal(true);
       }}
       role='button'
       tabIndex={0}

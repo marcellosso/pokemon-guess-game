@@ -36,7 +36,6 @@ const FirstGenEasy = () => {
 
   return (
     <>
-      <div>First Gen</div>
       <Game 
         pokemon={pokemon} 
         numberOfLifes={numberOfLifes} 

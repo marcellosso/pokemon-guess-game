@@ -7,7 +7,7 @@ import FirstGenHard from './views/FirstGenHard';
 
 const DefaultRouter = () => (
     <BrowserRouter>
-      <Navbar />
+      {/* <Navbar /> */}
       <Routes>
         <Route path="/" element={<FirstGenEasy />}/>
         <Route path="/hard" element={<FirstGenHard />}/>

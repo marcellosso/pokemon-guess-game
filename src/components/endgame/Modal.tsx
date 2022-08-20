@@ -95,7 +95,7 @@ const Modal = ({
           isCorrect && (
             
             <>
-              <h1>{pokemon.name} captured!</h1>
+              <h1 className='mainH1'>{pokemon.name} captured!</h1>
               <h3>You have captured it in {turn} attempts &#9787;</h3>
               <img 
                 src={pokemonImg} 
@@ -116,7 +116,7 @@ const Modal = ({
           !isCorrect && (
             
             <>
-              <h1>{pokemon.name} escaped!</h1>
+              <h1 className='mainH1'>{pokemon.name} escaped!</h1>
               <img 
                 src={pokemonImg} 
                 alt={`Pokemon - ${pokemon.name}`}

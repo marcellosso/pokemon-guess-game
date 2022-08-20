@@ -58,7 +58,7 @@ const Pokedex = ({ setOpenPokedex, capturedPokemons } : IPokedex) => {
       tabIndex={0}
     >
           <div className='mainContainer'>
-            <h1>Pokedex</h1>
+            <h1 className='mainH1'>Pokedex</h1>
 
             {
               allPokemonData.map((capturedPokemon) => (

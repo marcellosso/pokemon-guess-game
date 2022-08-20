@@ -1,0 +1,5 @@
+@font-face {
+  font-family: 'PokemonPixel';
+  font-weight: normal;
+  src: local('PokemonPixel'), url(./assets/fonts/PokemonPixel.ttf) format('truetype');
+}

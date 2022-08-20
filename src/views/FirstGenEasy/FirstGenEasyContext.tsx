@@ -41,7 +41,8 @@ const Provider : FC<IProvider> = ({ children }) : ReactElement => {
 
   const [gameProps, setGameProps] = useState<GamePropsType>(config.defaultGameAttributes);
 
-  const pokemon = useMemo(() => pokemonData[getPokemonIndexByDay(pokemonData)], [pokemonData]);
+  // const pokemon = useMemo(() => pokemonData[getPokemonIndexByDay(pokemonData)], [pokemonData]);
+  const pokemon = pokemonData.find((el) => el.number === 4) as PokemonDataType;
 
   const mapGuessesToUsedKey = (guesses: IGuesses[][]) => {
     const flattenedGuesses = _.flattenDeep(guesses);

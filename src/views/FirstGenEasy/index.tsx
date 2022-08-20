@@ -5,7 +5,12 @@ import { FirstGenEasyContextProvider } from './FirstGenEasyContext';
 
 const FirstGenEasyIndex = () => (
   <FirstGenEasyContextProvider >
-    <FirstGenEasy />
+    <>
+      <div className="bg-pokemon" />
+      <div className="content">
+        <FirstGenEasy />
+      </div>
+    </>
   </FirstGenEasyContextProvider>
 );
 

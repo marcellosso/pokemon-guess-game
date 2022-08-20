@@ -25,7 +25,7 @@ const PlayerCard = ({ setOpenPlayerCard, playerStats } : IPlayerCard) => {
       tabIndex={0}
     >
           <div className='mainContainer'>
-            <h1>Player Card</h1>
+            <h1 className='mainH1'>Player Card</h1>
           
             <h4>General</h4>
             <p>Games Played: {playerStats.gamesPlayed}</p>

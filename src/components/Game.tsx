@@ -7,6 +7,7 @@ import _ from '../lodash-mixins';
 import { GamePropsType, IConfigPokeState, PokemonDataType } from '../types';
 import Grid from './board/Grid';
 import Modal from './endgame/Modal';
+import GameTitle from './game-title/GameTitle';
 import Keypad from './keyboad/Keypad';
 
 interface IGameProps {
@@ -129,8 +130,10 @@ const Game : FC<IGameProps> = ({
       }}
       role='button'
       tabIndex={0}
+      className='gameContainer'
     >
-      <div>Solution - {pokemon.name}</div>
+      <GameTitle />
+      {/* <div>Solution - {pokemon.name}</div> */}
       <img 
         src={pokemonImg} 
         alt="Pokemon silhouette"

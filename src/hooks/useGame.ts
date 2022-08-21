@@ -152,7 +152,7 @@ const useGame = (
       return;
   }
 
-  if (/^[A-Za-z]$/.test(key)) setCurrentGuess((prev) => prev + _.lowerCase(key));
+  if (/^[A-Za-z]$/.test(key) && currentGuess.length < 10) setCurrentGuess((prev) => prev + _.lowerCase(key));
 
   }, [currentGuess, history, numberOfLifes, turn]);
   

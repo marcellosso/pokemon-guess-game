@@ -56,30 +56,24 @@
   color: #000
 }
 
-.keypad > .keyBackspace {
+#keyBackspace {
   background: transparent;
 }
 
-.keypad > .keyBackspace > svg {
+#keyBackspace > svg {
   height: 50px;
   width: 50px;
 }
 
-.keyPad > .keyEnter {
-  background: transparent;
-  grid-row: 3 span 1;
+#keyEnter {
+  grid-column: 25 / span 6;
+  font-size: 0.8em;
+  border: 2px solid #000;
 }
-
 
 .keypad > .keyZ {
   grid-column: 3 / span 3;
 }
-
-/* #kbd_enter {
-  grid-row: 3 span 1;
-  grid-column: 25 / span 8;
-  font-size: 0.9em;
-} */
 
 .keypad > .key:active {
   background-color: #b6b6b691;

@@ -1,12 +1,19 @@
 html {
   height: 100vh;
   width: 100vw;
+  font-size:  min(1rem, 100vw/100);;
 
-  --kbd-container-height: min(100em/2.15, 25vh);
-  --game-container-width: min(100em,(100vh - var(--kbd-container-height) - 20vh) * 5/6);
+  --kbd-container-height: min(23vh, 100em/2.25);
+  --game-container-width: min((110vh - var(--kbd-container-height)) * 5/6, 85em);
+  --header-title-width: min((80vh - var(--kbd-container-height)) * 5/6, 56em);
   --info-container-width: min(50em, (80vw) * 0.2);
+
   --pokemon-img-width: min(18em, (45vw) * 0.65);
   --pokemon-img-height: min(18em, (45vw) * 0.65);
+
+  
+  --heart-width: min(3em, (10vw) * 0.65);
+  --heart-height: min(3em, (10vw) * 0.65);
 }
 
 body {
@@ -43,6 +50,18 @@ body {
 .gameInfo .pokemonImg {
   width: var(--pokemon-img-width);
   height: var(--pokemon-img-height);
+  filter: drop-shadow(5px 5px 20px rgba(0, 0, 0, 0.8));
+}
+
+/* .gameInfo .healthBar {
+  display: 'flex';
+  justify-content: 'center';
+} */
+
+.gameInfo .healthBar svg {
+  margin: 10px 5px;
+  width: var(--heart-width);
+  height: var(--heart-height);
 }
 
 .content {
@@ -147,13 +166,13 @@ body {
 @keyframes bounce {
   0% {
     transform: scale(1);
-    border-color: #4C4347;
+    border-color: #000;
   }
   50% {
     transform: scale(1.2);
   }
   100% {
     transform: scale(1);
-    border-color: #4C4347;
+    border-color: #000;
   }
 }

@@ -9,13 +9,15 @@ interface IKey {
   addNewKey: () => void,
   color?: COLOR_CHECK_ENUM,
   customStyle?: React.CSSProperties
+  customId?: string
 }
 
-const Key : FC<IKey> = ({ letter, color, addNewKey, customStyle }) : JSX.Element => (
+const Key : FC<IKey> = ({ letter, color, addNewKey, customStyle, customId }) : JSX.Element => (
   <div
     onClick={addNewKey}
     className={`${color} key ${letter === 'Z' ? 'keyZ' : ''}`}
     style={customStyle}
+    id={customId}
   >
     {letter}
   </div>

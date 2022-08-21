@@ -1,16 +1,24 @@
 .container {
-  width: 100vw;
-  padding: 2rem; 
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 6vh;
+  display: grid;
+  grid-template-columns: 20vw 1fr 20vw;
+  grid-gap: 3em;
+  width: 100%;
+  padding: 10px;
+  flex-shrink: 0;
+  height: 7vh;
 }
 
 .containerBackground {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  height: 5vh;
+}
+
+.backgroundOptions {
   background-color: yellow;
-  height: 60%;
-  width: 410px;
+  /* height: min(60%, var(--kbd-container-height) * 0.6); */
+  width: var(--header-title-width);
   border-radius: 30px;
   box-shadow: -6px 9px 12px 0px rgba(0,85,196,1);
   padding: 8px;
@@ -18,8 +26,8 @@
 
 .containerBackground h1 {
   margin: 0;
-  font-size: min(1.5rem, calc(100vw / 10));
-  /* font-size: 1.5rem; */
+  /* font-size: min(2rem, calc(100vw / 10)); */
+  font-size: 1.5em;
   font-weight: normal;
   font-family: PokemonPixel;
 }

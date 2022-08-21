@@ -1,6 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { FC, useCallback, useEffect, useMemo, useState } from 'react';
-import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
 
 import useGame from '../hooks/useGame';
 import _ from '../lodash-mixins';
@@ -8,6 +7,7 @@ import { GamePropsType, IConfigPokeState, PokemonDataType } from '../types';
 import Grid from './board/Grid';
 import Modal from './endgame/Modal';
 import GameTitle from './game-title/GameTitle';
+import GameHeart from './GameHeart';
 import Keypad from './keyboad/Keypad';
 
 interface IGameProps {
@@ -142,28 +142,15 @@ const Game : FC<IGameProps> = ({
           className='pokemonImg'
         />
         
-        <div style={{
-          display: 'flex',
-          justifyContent: 'center',
-        }}>
+        <div className='healthBar'>
         { 
           [...Array((numberOfLifes + 1 - turn))].map(() => (
-              <AiFillHeart 
-                color="#c0404b" 
-                style={{
-                  filter:"drop-shadow(1px 1px 3px #000)"
-                }}
-              />
+              <GameHeart />
             ))
         }
         { 
           [...Array((turn))].map(() => (
-              <AiOutlineHeart 
-                color="#c0404b" 
-                style={{
-                  filter:"drop-shadow(1px 1px 3px #000)"
-                }}
-              />
+              <GameHeart />
             ))
         }
         </div>

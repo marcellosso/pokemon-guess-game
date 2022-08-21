@@ -1,62 +1,60 @@
 .gridContainer {
   width: var(--game-container-width);
   margin: 0 auto;
+  margin-top: 5em;
 } 
 
 .row {
-  text-align: center;
-  display: flex;
-  /* justify-content: center; */
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  grid-gap: 1.7505em;
+  margin: 0;
+  margin-bottom: 1em;
 }
 
 .row > div {
-  display: block;
-  width: 60px;
-  height: 50px;
+  border-bottom: 3px solid #000;
 
-  border-bottom: 2px solid #000;
-
-  margin: 4px;
-  
-  text-align: center;
-  line-height: 40px;
+  font-weight: normal;
+  font-family: PokemonPixel;
+  line-height: 2em;
 
   text-transform: uppercase;
   font-weight: bold;
-  font-size: 1.7em;
+  font-size: 3em;
   color: #eee;
 }
 
 .row > div.green {
-  --background: #5ac85a;
+  /* --background: #5ac85a; */
   --border-color: #5ac85a;
   animation: 0.45s linear flip 0s forwards;
 }
 
 .row > div.grey {
-  --background: #3d3639;
+  /* --background: #3d3639; */
   --border-color: #3d3639;
   animation: 0.45s linear flip 0s forwards;
 }
 
 .row > div.yellow {
-  --background: #e2cc68;
+  /* --background: #e2cc68; */
   --border-color: #e2cc68;
   animation: 0.45s linear flip 0s forwards;
 }
 
 .row > div.greenOnly {
-  background: #5ac85a;
+  /* background: #5ac85a; */
   border-color: #5ac85a;
 }
 
 .row > div.greyOnly {
-  background: #3d3639;
+  /* background: #3d3639; */
   border-color: #3d3639;
 }
 
 .row > div.yellowOnly {
-  background: #e2cc68;
+  /* background: #e2cc68; */
   border-color: #e2cc68;
 }
 
@@ -99,8 +97,9 @@
 .row.current > div.filled {
   animation: bounce 0.2s ease-in-out forwards;
 }
-/* 
+
 div.empty {
-  border: 1px solid #615458;
-  background-color: #615458
-} */
+  /* border: 1px solid #615458;
+  background-color: #615458 */
+  height: 2em;
+}

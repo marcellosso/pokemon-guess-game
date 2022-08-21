@@ -21,19 +21,19 @@
 
 
 .keypad > div.green {
-  background: #5ac85a;
+  background: var(--all-correct-color);
   color: #eee;
   transition: all 0.3s ease-in;
 }
 
 .keypad > div.yellow {
-  background: #e2cc68;
+  background: var(--letter-correct-color);
   color: #eee;
   transition: all 0.3s ease-in;
 }
 
 .keypad > div.grey {
-  background: #3d3639;
+  background: var(--wrong-color);
   color: #eee;
   transition: all 0.3s ease-in;
 }

@@ -1,7 +1,9 @@
 .gridContainer {
   width: var(--game-container-width);
   margin: 0 auto;
-  margin-top: 5em;
+  display: grid;
+  grid-template-rows: repeat(5, 4em);
+  grid-gap: 0.65em;
 } 
 
 .row {
@@ -9,7 +11,6 @@
   grid-template-columns: repeat(10, 1fr);
   grid-gap: 1.7505em;
   margin: 0;
-  margin-bottom: 1em;
 }
 
 .row > div {
@@ -17,7 +18,6 @@
 
   font-weight: normal;
   font-family: PokemonPixel;
-  line-height: 2em;
 
   text-transform: uppercase;
   font-weight: bold;
@@ -26,36 +26,36 @@
 }
 
 .row > div.green {
-  /* --background: #5ac85a; */
-  --border-color: #5ac85a;
+  /* --background: var(--all-correct-color); */
+  --border-color: var(--all-correct-color);
   animation: 0.45s linear flip 0s forwards;
 }
 
 .row > div.grey {
-  /* --background: #3d3639; */
-  --border-color: #3d3639;
+  /* --background: var(--wrong-color); */
+  --border-color: var(--wrong-color);
   animation: 0.45s linear flip 0s forwards;
 }
 
 .row > div.yellow {
-  /* --background: #e2cc68; */
-  --border-color: #e2cc68;
+  /* --background: var(--letter-correct-color); */
+  --border-color: var(--letter-correct-color);
   animation: 0.45s linear flip 0s forwards;
 }
 
 .row > div.greenOnly {
-  /* background: #5ac85a; */
-  border-color: #5ac85a;
+  /* background: var(--all-correct-color); */
+  border-color: var(--all-correct-color);
 }
 
 .row > div.greyOnly {
-  /* background: #3d3639; */
-  border-color: #3d3639;
+  /* background: var(--wrong-color); */
+  border-color: var(--wrong-color);
 }
 
 .row > div.yellowOnly {
-  /* background: #e2cc68; */
-  border-color: #e2cc68;
+  /* background: var(--letter-correct-color); */
+  border-color: var(--letter-correct-color);
 }
 
 .row > div:nth-child(2) {
@@ -96,10 +96,4 @@
 
 .row.current > div.filled {
   animation: bounce 0.2s ease-in-out forwards;
-}
-
-div.empty {
-  /* border: 1px solid #615458;
-  background-color: #615458 */
-  height: 2em;
 }

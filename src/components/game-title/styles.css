@@ -8,6 +8,36 @@
   height: 7vh;
 }
 
+.container .levelsNavbar {
+  display: grid;
+  grid-template-columns: 33% 33% 33%;
+}
+
+.container .helpNavbar {
+  display: flex;
+  justify-content: flex-end;
+  margin-right: 2em;
+}
+
+.container .helpNavbar .helpIconsButton {
+  outline: none;
+  border: 0;
+  background-color: transparent;
+  display: flex;
+  justify-content: center;
+  cursor: pointer;
+  animation: 0.3s linear ease;
+}
+
+.container .helpNavbar .helpIconsButton svg {
+  width: 5em;
+  height: 5rem;
+}
+
+.container .helpNavbar .helpIconsButton:hover svg {
+  transform: scale(1.12);
+}
+
 .containerBackground {
   width: 100%;
   display: flex;

@@ -14,7 +14,7 @@ interface IGrid {
 }
 
 const Grid : FC<IGrid> = ({ currentGuess, guesses, turn, isCorrect, numberOfLifes }) : JSX.Element => (
-        <div className='gridContainer'>
+        <div className='gridContainer' >
             {guesses.map((guess, index) => {
                 if (turn === index) {
                     return <Row key={index} currentGuess={currentGuess} currentTurn={turn} />;

@@ -30,7 +30,7 @@ type FirstGenEasyContexTypes = {
 const FirstGenEasyContext = createContext<FirstGenEasyContexTypes>({} as FirstGenEasyContexTypes);
 
 const Provider : FC<IProvider> = ({ children }) : ReactElement => {
-  const numberOfLifes = 4; // TURNS ARE LIFE ´+ 1
+  const numberOfLifes = 4; // TURNS ARE LIFE + 1
 
   const pokemonData = useMemo(() => config.firstGenPokemon, []);
 

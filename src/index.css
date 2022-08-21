@@ -4,16 +4,20 @@ html {
   font-size:  min(1rem, 100vw/100);;
 
   --kbd-container-height: min(23vh, 100em/2.25);
-  --game-container-width: min((110vh - var(--kbd-container-height)) * 5/6, 85em);
+  --game-container-width: min((120vh - var(--kbd-container-height)) * 5/6, 95em);
   --header-title-width: min((80vh - var(--kbd-container-height)) * 5/6, 56em);
   --info-container-width: min(50em, (80vw) * 0.2);
 
-  --pokemon-img-width: min(18em, (45vw) * 0.65);
-  --pokemon-img-height: min(18em, (45vw) * 0.65);
+  --pokemon-img-width: min(12em, (45vw) * 0.65);
+  --pokemon-img-height: min(12em, (45vw) * 0.65);
 
   
-  --heart-width: min(3em, (10vw) * 0.65);
-  --heart-height: min(3em, (10vw) * 0.65);
+  --heart-width: min(2em, (10vw) * 0.65);
+  --heart-height: min(2em, (10vw) * 0.65);
+
+  --all-correct-color: #5ac85a;
+  --letter-correct-color: #e2cc68;
+  --wrong-color: #3d3639;
 }
 
 body {
@@ -87,6 +91,25 @@ body {
   background-repeat: no-repeat;
   background-size: cover; 
   filter: blur(5px);
+}
+
+.playerInfoIcons {
+  outline: none;
+  border: 0;
+  background-color: transparent;
+  display: flex;
+  justify-content: center;
+  cursor: pointer;
+  animation: 0.3s linear ease;
+}
+
+.playerInfoIcons svg {
+  width: 8em;
+  height: 8rem;
+}
+
+.playerInfoIcons:hover svg {
+  transform: scale(1.12);
 }
 
 .animateJump {

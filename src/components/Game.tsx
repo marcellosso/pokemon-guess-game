@@ -5,10 +5,11 @@ import useGame from '../hooks/useGame';
 import _ from '../lodash-mixins';
 import { GamePropsType, IConfigPokeState, PokemonDataType } from '../types';
 import Grid from './board/Grid';
+import GameHeart from './custom-icons/GameHeart';
 import Modal from './endgame/Modal';
 import GameTitle from './game-title/GameTitle';
-import GameHeart from './GameHeart';
 import Keypad from './keyboad/Keypad';
+import TutorialModal from './tutorial-modal';
 
 interface IGameProps {
   pokemon: PokemonDataType,
@@ -16,6 +17,7 @@ interface IGameProps {
 
   gameDay: number,
   winStreak: number,
+  shouldOpenTutorial: boolean
 
   gameProps : GamePropsType,
 
@@ -32,6 +34,7 @@ const Game : FC<IGameProps> = ({
 
   gameDay,
   winStreak,
+  shouldOpenTutorial,
 
   addWordAction, 
   finishGameAction,
@@ -40,6 +43,8 @@ const Game : FC<IGameProps> = ({
 }) : JSX.Element => {
   const [showModal, setShowModal] = useState(false);
   const [gameEnded, setGameEnded] = useState(false);
+
+  const [openTutorial, setOpenTutorial] = React.useState(!!shouldOpenTutorial);
 
   const {
     currentGuess,
@@ -87,7 +92,12 @@ const Game : FC<IGameProps> = ({
     await _.sleep(350);
   }, [calculatedAnimationDelay, isCorrect]);
 
+  const triggerModal = () => {
+    setShowModal(!showModal);
+  };
+
   const endGameActions = useCallback(async () => {
+    window.addEventListener('click', triggerModal);
     finishGameAction(isCorrect, turn);
     await triggerAnimations();
     setShowModal(true);
@@ -119,21 +129,22 @@ const Game : FC<IGameProps> = ({
   useEffect(() => {
     if (gameEnded && !gameProps.isCorrect) endGameActions();
     else if (gameEnded && gameProps.isCorrect) callModal();
-  },[gameEnded]);
+  }, [gameEnded]);
 
   return (
     // eslint-disable-next-line jsx-a11y/click-events-have-key-events
     <>
-    {/* // <div
-    //   onClick={(e) => {
-    //     e.stopPropagation(); 
-    //     if (gameEnded) setShowModal(true);
-    //   }}
-    //   role='button'
-    //   tabIndex={0}
-    //   className='gameContainer'
-    // > */}
-      <GameTitle />
+      {
+        openTutorial && (
+          <TutorialModal 
+            setOpenTutorial={setOpenTutorial} 
+          />
+        )
+      }
+
+      <GameTitle 
+        setOpenTutorial={setOpenTutorial}
+      />
       
       <div className='gameInfo'>
         <img 
@@ -177,7 +188,7 @@ const Game : FC<IGameProps> = ({
           setOpenModal={setShowModal}
         />
       ) }
-    {/* </div> */}
+  
     </>
   );
 };

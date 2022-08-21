@@ -1,10 +1,10 @@
-import React, { useContext, useEffect } from 'react';
-import { AiFillQuestionCircle } from 'react-icons/ai';
+import React, { useContext } from 'react';
 
+import PlayerCardIcon from '../../components/custom-icons/PlayerCardIcon';
+import PokedexIcon from '../../components/custom-icons/PokedexIcon';
 import Game from '../../components/Game';
 import PlayerCard from '../../components/player-card';
 import Pokedex from '../../components/pokedex';
-import TutorialModal from '../../components/tutorial-modal';
 import { FirstGenEasyContext } from './FirstGenEasyContext';
 
 const FirstGenEasy = () => {
@@ -26,13 +26,6 @@ const FirstGenEasy = () => {
 
   const [openPlayerCard, setOpenPlayerCard] = React.useState(false);
   const [openPokedex, setOpenPokedex] = React.useState(false);
-  const [openTutorial, setOpenTutorial] = React.useState(false);
-
-  useEffect(() => {
-    if (pokeStatsLS.gamesPlayed === 0 && pokeMetaLS.startTime === 0)
-      setOpenTutorial(true);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
 
   return (
     <>
@@ -42,17 +35,12 @@ const FirstGenEasy = () => {
         gameProps={gameProps} 
         gameDay={pokeMetaLS.day}
         winStreak={pokeStatsLS.winStreak}
+        shouldOpenTutorial={pokeStatsLS.gamesPlayed === 0 && pokeMetaLS.startTime === 0}
         addWordAction={addWordLSManagement}
         handleNewGame={handleNewGame}
         finishGameAction={finishGameLSManagement}
       />
-      {
-        openTutorial && (
-          <TutorialModal 
-            setOpenTutorial={setOpenTutorial} 
-          />
-        )
-      }
+      
       {
         openPlayerCard && (
           <PlayerCard 
@@ -81,36 +69,32 @@ const FirstGenEasy = () => {
           justifyContent: 'space-between'
         }}
       >
+
         <button 
           type='button' 
-          onClick={(e) => {
-            e.stopPropagation(); 
-            setOpenPlayerCard(true);
-          }} 
-        >
-          Player Card
-        </button>
-        <button 
-          type='button' 
+          className='playerInfoIcons'
           onClick={(e) => {
             e.stopPropagation(); 
             setOpenPokedex(true);
           }} 
         >
-          Pokedex
+          <PokedexIcon />
         </button>
-        
-      </div>
-        {/* <button 
+
+        <button 
           type='button' 
+          className='playerInfoIcons'
           onClick={(e) => {
             e.stopPropagation(); 
-            setOpenTutorial(true);
+            setOpenPlayerCard(true);
           }} 
+          style={{
+            marginBottom: '-0.3em'
+          }}
         >
-          <AiFillQuestionCircle />
-        </button> */}
-
+          <PlayerCardIcon />
+        </button>
+      </div>
     </>
   );
 };

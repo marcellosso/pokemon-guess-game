@@ -123,46 +123,50 @@ const Game : FC<IGameProps> = ({
 
   return (
     // eslint-disable-next-line jsx-a11y/click-events-have-key-events
-    <div
-      onClick={(e) => {
-        e.stopPropagation(); 
-        if (gameEnded) setShowModal(true);
-      }}
-      role='button'
-      tabIndex={0}
-      className='gameContainer'
-    >
+    <>
+    {/* // <div
+    //   onClick={(e) => {
+    //     e.stopPropagation(); 
+    //     if (gameEnded) setShowModal(true);
+    //   }}
+    //   role='button'
+    //   tabIndex={0}
+    //   className='gameContainer'
+    // > */}
       <GameTitle />
-      {/* <div>Solution - {pokemon.name}</div> */}
-      <img 
-        src={pokemonImg} 
-        alt="Pokemon silhouette"
-      />
       
-      <div style={{
-        display: 'flex',
-        justifyContent: 'center',
-      }}>
-      { 
-        [...Array((numberOfLifes + 1 - turn))].map(() => (
-            <AiFillHeart 
-              color="#c0404b" 
-              style={{
-                filter:"drop-shadow(1px 1px 3px #000)"
-              }}
-            />
-          ))
-      }
-      { 
-        [...Array((turn))].map(() => (
-            <AiOutlineHeart 
-              color="#c0404b" 
-              style={{
-                filter:"drop-shadow(1px 1px 3px #000)"
-              }}
-            />
-          ))
-      }
+      <div className='gameInfo'>
+        <img 
+          src={pokemonImg} 
+          alt="Pokemon silhouette"
+          className='pokemonImg'
+        />
+        
+        <div style={{
+          display: 'flex',
+          justifyContent: 'center',
+        }}>
+        { 
+          [...Array((numberOfLifes + 1 - turn))].map(() => (
+              <AiFillHeart 
+                color="#c0404b" 
+                style={{
+                  filter:"drop-shadow(1px 1px 3px #000)"
+                }}
+              />
+            ))
+        }
+        { 
+          [...Array((turn))].map(() => (
+              <AiOutlineHeart 
+                color="#c0404b" 
+                style={{
+                  filter:"drop-shadow(1px 1px 3px #000)"
+                }}
+              />
+            ))
+        }
+        </div>
       </div>
 
       <Grid
@@ -186,7 +190,8 @@ const Game : FC<IGameProps> = ({
           setOpenModal={setShowModal}
         />
       ) }
-    </div>
+    {/* </div> */}
+    </>
   );
 };
 

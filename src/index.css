@@ -1,9 +1,17 @@
 html {
   height: 100vh;
   width: 100vw;
+
+  --kbd-container-height: min(100em/2.15, 25vh);
+  --game-container-width: min(100em,(100vh - var(--kbd-container-height) - 20vh) * 5/6);
+  --info-container-width: min(50em, (80vw) * 0.2);
+  --pokemon-img-width: min(18em, (45vw) * 0.65);
+  --pokemon-img-height: min(18em, (45vw) * 0.65);
 }
 
 body {
+  display: flex;
+  flex-direction: column;
   min-height: 100%;
   margin: 0;
   text-align: center;
@@ -24,9 +32,17 @@ body {
   color: #333;
 }
 
-img {
-  width: 150;
-  height: 150;
+.gameInfo {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 5px;
+}
+
+.gameInfo .pokemonImg {
+  width: var(--pokemon-img-width);
+  height: var(--pokemon-img-height);
 }
 
 .content {
@@ -35,6 +51,8 @@ img {
   right: 0;
   z-index: 9999;
   display: flex;
+  flex-direction: column;
+  height: 100%;
 }
 
 .bg-pokemon {
@@ -50,14 +68,6 @@ img {
   background-repeat: no-repeat;
   background-size: cover; 
   filter: blur(5px);
-}
-
-.gameContainer {
-  height: 100%;
-}
-
-.gameContainer:focus {
-  outline: 0;
 }
 
 .animateJump {

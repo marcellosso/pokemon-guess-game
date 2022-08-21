@@ -50,7 +50,7 @@ const Row : FC<IRow> = ({ guess, currentGuess, isCorrect }) : JSX.Element=> {
   return (
     <div className='row'>
       {
-        [...Array(10)].map(() => (
+        [...Array(1)].map(() => (
           <div className='empty' />
         ))
       }

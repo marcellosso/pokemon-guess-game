@@ -69,33 +69,48 @@ const FirstGenEasy = () => {
           />
         )
       }
-      <button 
-        type='button' 
-        onClick={(e) => {
-          e.stopPropagation(); 
-          setOpenPlayerCard(true);
-        }} 
+    
+      <div
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+          width: '10%',
+          position: 'absolute',
+          bottom: 0,
+          right: 0,
+          justifyContent: 'space-between'
+        }}
       >
-        Player Card
-      </button>
-      <button 
-        type='button' 
-        onClick={(e) => {
-          e.stopPropagation(); 
-          setOpenPokedex(true);
-        }} 
-      >
-        Pokedex
-      </button>
-      <button 
-        type='button' 
-        onClick={(e) => {
-          e.stopPropagation(); 
-          setOpenTutorial(true);
-        }} 
-      >
-        <AiFillQuestionCircle />
-      </button>
+        <button 
+          type='button' 
+          onClick={(e) => {
+            e.stopPropagation(); 
+            setOpenPlayerCard(true);
+          }} 
+        >
+          Player Card
+        </button>
+        <button 
+          type='button' 
+          onClick={(e) => {
+            e.stopPropagation(); 
+            setOpenPokedex(true);
+          }} 
+        >
+          Pokedex
+        </button>
+        
+      </div>
+        {/* <button 
+          type='button' 
+          onClick={(e) => {
+            e.stopPropagation(); 
+            setOpenTutorial(true);
+          }} 
+        >
+          <AiFillQuestionCircle />
+        </button> */}
+
     </>
   );
 };

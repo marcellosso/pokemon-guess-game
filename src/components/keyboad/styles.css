@@ -1,18 +1,24 @@
 .keypad {
   max-width: 700px;
+  width: 100%;
+  height: var(--kbd-container-height);
+
   margin: 20px auto;
+  padding: 0 0.5em 0.3em 0.5em;
+
+  flex-shrink: 0;
+  box-sizing: border-box;
+
+  display: grid;
+  grid-template-rows: repeat(3, 1fr);
+  grid-template-columns: repeat(30, 1fr);
+  grid-gap: 0.55em;
+
+  font-size: min(4rem, calc(var(--kbd-container-height) / 8));
+  font-weight: normal;
+  font-family: PokemonPixel;
 }
 
-.keypad > div {
-  margin: 3px;
-  width: 40px;
-  height: 50px;
-  background: #4C4347;
-  display: inline-block;
-  border-radius: 6px;
-  line-height: 50px;
-  color: #eee
-}
 
 .keypad > div.green {
   background: #5ac85a;
@@ -34,9 +40,55 @@
 
 .keypad > .key {
   cursor: pointer;
-  font-size: 0.75em;
+  font-size: 1em;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  grid-column: span 3;
+
+  /* Hack because font has small padding to the right */
+  padding-left: 1px; 
+  
+  background: #D9D9D991;
+
+  border-radius: 10%;
+  color: #000
 }
 
-.keypad > .key:active {
-  background-color: #443a3f;
+.keypad > .keyBackspace {
+  background: transparent;
 }
+
+.keypad > .keyBackspace > svg {
+  height: 50px;
+  width: 50px;
+}
+
+.keyPad > .keyEnter {
+  background: transparent;
+  grid-row: 3 span 1;
+}
+
+
+.keypad > .keyZ {
+  grid-column: 3 / span 3;
+}
+
+/* #kbd_enter {
+  grid-row: 3 span 1;
+  grid-column: 25 / span 8;
+  font-size: 0.9em;
+} */
+
+.keypad > .key:active {
+  background-color: #b6b6b691;
+}
+
+.keypad > .keyIcon:active {
+  background: transparent;
+}
+
+.keypad > .keyIcon:active > svg:first-child {
+  color: #b6b6b691 !important
+ }

@@ -5,7 +5,7 @@ import React, { FC } from 'react';
 import { COLOR_CHECK_ENUM } from '../../enums';
 
 interface IKey {
-  letter: string,
+  letter: string | JSX.Element,
   addNewKey: () => void,
   color?: COLOR_CHECK_ENUM,
   customStyle?: React.CSSProperties
@@ -14,7 +14,7 @@ interface IKey {
 const Key : FC<IKey> = ({ letter, color, addNewKey, customStyle }) : JSX.Element => (
   <div
     onClick={addNewKey}
-    className={`${color} key`}
+    className={`${color} key ${letter === 'Z' ? 'keyZ' : ''}`}
     style={customStyle}
   >
     {letter}

@@ -122,6 +122,7 @@ const Game : FC<IGameProps> = ({
 
   // TODO Remove this and add proper delayed animation on modal
   const callModal = async () => {
+    window.addEventListener('click', triggerModal);
     await _.sleep(1000);
     setShowModal(true);
   };

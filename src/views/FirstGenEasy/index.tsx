@@ -7,6 +7,7 @@ const FirstGenEasyIndex = () => (
   <FirstGenEasyContextProvider >
     <>
       <div className="bg-pokemon" />
+      <div className="bg-pokemon-filter" />
       <div className="content">
         <FirstGenEasy />
       </div>

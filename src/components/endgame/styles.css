@@ -12,9 +12,9 @@
 
 .modal .mainContainer {
   max-width: 480px;
-  background: #fff;
+  background: #FFD568;
   padding: 40px;
-  border-radius: 10px;
+  border-radius: 30px;
   margin: 10% auto;
   box-shadow: 2px 2px 10px rgba(0,0,0,0.3);
 }

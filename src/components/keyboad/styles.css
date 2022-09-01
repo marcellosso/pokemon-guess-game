@@ -1,4 +1,9 @@
 .keypad {
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translate(-50%, 0);
+
   max-width: 700px;
   width: 100%;
   height: var(--kbd-container-height);

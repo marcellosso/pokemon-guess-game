@@ -3,9 +3,9 @@ import React from 'react';
 const PokedexIcon = () => (
   <svg width="133" height="142" viewBox="0 0 133 142"
 fill="none" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
-<rect width="133" height="142" fill="url(#pattern0)"/>
+<rect width="133" height="142" fill="url(#playerCardIcon)"/>
 <defs>
-<pattern id="pattern0" patternContentUnits="objectBoundingBox" width="1"
+<pattern id="playerCardIcon" patternContentUnits="objectBoundingBox" width="1"
 height="1">
 <use xlinkHref="#image0_16_218" transform="translate(0 -0.000306185) scale(0.00207039 0.00193917)"/>
 </pattern>

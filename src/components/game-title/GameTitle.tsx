@@ -32,6 +32,7 @@ const GameTitle : FC<IGameTitle> = ({ setOpenTutorial }) => (
         <button 
           type='button' 
           className='helpIconsButton'
+          id='helpIcon'
           onClick={(e) => {
             e.stopPropagation(); 
             setOpenTutorial(true);
